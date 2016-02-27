@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">WayneDavidsonInvestmentCalculator</string>
     <string name="action_settings">Settings</string>
+    <string name="paymentEditTextString">Payment/Cash Flow</string>
+    <string name="rateEditTextString">Rate per Period %</string>
+    <string name="periodsEditTextString"># of Periods</string>
+    <string name="calculateButtonString">Calculate</string>
 </resources>

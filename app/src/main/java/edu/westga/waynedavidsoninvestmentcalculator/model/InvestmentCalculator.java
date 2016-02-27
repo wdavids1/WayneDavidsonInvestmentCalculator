@@ -74,9 +74,17 @@ public class InvestmentCalculator {
         return this.periods;
     }
 
+    /**
+     * Calculate the future value
+     * @return  The future value
+     */
     public double calculateFutureValue() {
-        double numerator = (Math.pow(1 + this.rate, this.periods) - 1);
+        if (this.rate == 0) {
+            return Math.round((this.paymentAmount * this.periods) * 100.0) / 100.0;
+        }
 
-        return this.paymentAmount * (numerator / this.rate);
+        double numerator = (Math.pow(1 + (this.rate/100), this.periods) - 1);
+
+        return Math.round(this.paymentAmount * (numerator / (this.rate / 100)) * 100.0) / 100.0;
     }
 }

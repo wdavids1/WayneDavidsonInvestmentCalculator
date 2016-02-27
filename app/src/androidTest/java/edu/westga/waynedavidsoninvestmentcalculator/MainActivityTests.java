@@ -4,6 +4,9 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by Wayne on 2/27/2016.
@@ -77,5 +80,11 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
         Button calculateButton = (Button) activity.findViewById(R.id.calculateButton);
 
         TouchUtils.clickView(this, calculateButton);
+
+        TextView calculatedValue = (TextView) activity.findViewById(R.id.calculatedTextView);
+
+        String futureValue = calculatedValue.getText().toString();
+
+        assertEquals("1257.79", futureValue);
     }
 }

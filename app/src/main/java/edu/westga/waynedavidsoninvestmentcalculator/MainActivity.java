@@ -8,6 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import edu.westga.waynedavidsoninvestmentcalculator.model.InvestmentCalculator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,5 +52,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void calculateFutureValue(View view) {
+        EditText paymentText = (EditText) findViewById(R.id.paymentEditText);
+        EditText rateText = (EditText) findViewById(R.id.rateEditText);
+        EditText periodText = (EditText) findViewById(R.id.periodEditText);
+
+        Double payment = Double.parseDouble(paymentText.getText().toString());
+        Double rate = Double.parseDouble(rateText.getText().toString());
+        int period = Integer.parseInt(periodText.getText().toString());
+
+        InvestmentCalculator calculator = new InvestmentCalculator(payment, rate, period);
+        Double result = calculator.calculateFutureValue();
+
+        TextView futureValue = (TextView) findViewById(R.id.calculatedTextView);
+
+        futureValue.setText(Double.toString(result));
     }
 }

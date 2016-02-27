@@ -41,11 +41,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/calculateButtonString"
-        android:id="@+id/calculateButton" />
+        android:id="@+id/calculateButton"
+        android:onClick="calculateFutureValue" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView" />
+        android:id="@+id/calculatedTextView" />
 </LinearLayout>

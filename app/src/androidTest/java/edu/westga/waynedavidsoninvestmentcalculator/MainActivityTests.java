@@ -77,11 +77,11 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
         this.testPayment();
         this.testRate();
         this.testPeriod();
-
+        getInstrumentation().waitForIdleSync();
         Button calculateButton = (Button) activity.findViewById(R.id.calculateButton);
 
         TouchUtils.clickView(this, calculateButton);
-
+        getInstrumentation().waitForIdleSync();
         TextView calculatedValue = (TextView) activity.findViewById(R.id.calculatedTextView);
 
         String futureValue = calculatedValue.getText().toString();
@@ -103,7 +103,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
 
         String futureValue = calculatedValue.getText().toString();
 
-        assertEquals("$ .00", futureValue);
+        assertEquals("", futureValue);
     }
 
     public void testRateRequiredShouldStillGet0() {
@@ -120,7 +120,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
 
         String futureValue = calculatedValue.getText().toString();
 
-        assertEquals("$ .00", futureValue);
+        assertEquals("", futureValue);
     }
 
     public void testPeriodtRequiredShouldStillGet0() {
@@ -137,6 +137,6 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
 
         String futureValue = calculatedValue.getText().toString();
 
-        assertEquals("$ .00", futureValue);
+        assertEquals("", futureValue);
     }
 }

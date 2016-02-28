@@ -60,42 +60,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calculateFutureValue(View view) {
-        Double payment = 0.0;
-        Double rate = 0.0;
-        int period = 0;
-
         EditText paymentText = (EditText) findViewById(R.id.paymentEditText);
         EditText rateText = (EditText) findViewById(R.id.rateEditText);
         EditText periodText = (EditText) findViewById(R.id.periodEditText);
 
         try {
-            payment = Double.parseDouble(paymentText.getText().toString());
+            Double payment = Double.parseDouble(paymentText.getText().toString());
+            Double rate = Double.parseDouble(rateText.getText().toString());
+            int period = Integer.parseInt(periodText.getText().toString());
+
+            InvestmentCalculator calculator = new InvestmentCalculator(payment, rate, period);
+
+            Double result = calculator.calculateFutureValue();
+
+            TextView futureValue = (TextView) findViewById(R.id.calculatedTextView);
+
+            DecimalFormat formattedResult = new DecimalFormat("$ #,###.00");
+
+            futureValue.setText(formattedResult.format(result));
         } catch (NumberFormatException nfe) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Payment is required", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "Payment, Rate, and Period are required", Toast.LENGTH_SHORT);
             toast.show();
         }
-
-        try {
-            rate = Double.parseDouble(rateText.getText().toString());
-        } catch (NumberFormatException nfe) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Rate is required", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-        try {
-            period = Integer.parseInt(periodText.getText().toString());
-        } catch (NumberFormatException nfe) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Period is required", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-        InvestmentCalculator calculator = new InvestmentCalculator(payment, rate, period);
-        Double result = calculator.calculateFutureValue();
-
-        TextView futureValue = (TextView) findViewById(R.id.calculatedTextView);
-
-        DecimalFormat formattedResult = new DecimalFormat("$ #,###.00");
-
-        futureValue.setText(formattedResult.format(result));
     }
 }

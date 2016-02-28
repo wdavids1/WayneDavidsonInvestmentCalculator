@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -19,7 +18,8 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/paymentEditText"
-        android:hint="@string/paymentEditTextString" />
+        android:hint="@string/paymentEditTextString"
+        android:layout_centerHorizontal="true"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,7 +27,9 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/rateEditText"
-        android:hint="@string/rateEditTextString" />
+        android:hint="@string/rateEditTextString"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/paymentEditText"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -35,18 +37,24 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/periodEditText"
-        android:hint="@string/periodsEditTextString" />
+        android:hint="@string/periodsEditTextString"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/rateEditText"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/calculateButtonString"
         android:id="@+id/calculateButton"
-        android:onClick="calculateFutureValue" />
+        android:onClick="calculateFutureValue"
+        android:layout_below="@id/periodEditText"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/calculatedTextView" />
-</LinearLayout>
+        android:id="@+id/calculatedTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/calculateButton"/>
+</RelativeLayout>

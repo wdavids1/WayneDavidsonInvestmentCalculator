@@ -1,5 +1,6 @@
 package edu.westga.waynedavidsoninvestmentcalculator;
 
+import android.graphics.drawable.Drawable;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 import android.widget.Button;
@@ -70,7 +71,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
         getInstrumentation().sendStringSync("10");
     }
 
-    public void testCalculate() {
+    public void testCalculateFutureValue() {
         MainActivity activity = getActivity();
 
         this.testPayment();
@@ -85,6 +86,57 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
 
         String futureValue = calculatedValue.getText().toString();
 
-        assertEquals("1257.79", futureValue);
+        assertEquals("$ 1,257.79", futureValue);
+    }
+
+    public void testPaymentRequiredShouldStillGet0() {
+        MainActivity activity = getActivity();
+
+        this.testRate();
+        this.testPeriod();
+
+        Button calculateButton = (Button) activity.findViewById(R.id.calculateButton);
+
+        TouchUtils.clickView(this, calculateButton);
+
+        TextView calculatedValue = (TextView) activity.findViewById(R.id.calculatedTextView);
+
+        String futureValue = calculatedValue.getText().toString();
+
+        assertEquals("$ .00", futureValue);
+    }
+
+    public void testRateRequiredShouldStillGet0() {
+        MainActivity activity = getActivity();
+
+        this.testPayment();
+        this.testPeriod();
+
+        Button calculateButton = (Button) activity.findViewById(R.id.calculateButton);
+
+        TouchUtils.clickView(this, calculateButton);
+
+        TextView calculatedValue = (TextView) activity.findViewById(R.id.calculatedTextView);
+
+        String futureValue = calculatedValue.getText().toString();
+
+        assertEquals("$ .00", futureValue);
+    }
+
+    public void testPeriodtRequiredShouldStillGet0() {
+        MainActivity activity = getActivity();
+
+        testPayment();
+        this.testRate();
+
+        Button calculateButton = (Button) activity.findViewById(R.id.calculateButton);
+
+        TouchUtils.clickView(this, calculateButton);
+
+        TextView calculatedValue = (TextView) activity.findViewById(R.id.calculatedTextView);
+
+        String futureValue = calculatedValue.getText().toString();
+
+        assertEquals("$ .00", futureValue);
     }
 }
